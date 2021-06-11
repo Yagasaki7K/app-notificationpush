@@ -1,3 +1,6 @@
+importScripts('https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js')
+importScripts('https://www.gstatic.com/firebasejs/8.6.7/firebase-messaging.js')
+
 const config = {
     apiKey: "AIzaSyC8VzkQUdmmxsFEoQPQaE-dbys4MA9Oa1Y",
     authDomain: "sw-creditcards.firebaseapp.com",
@@ -12,18 +15,10 @@ firebaseConfig.initializeApp(config)
 
 const messaging = firebase.messaging();
 
-messaging.requestPermission()
-.then (function() {
-    console.log('You have a permission')
-    return messaging.getToken();
+messaging.setBackgroundMessageHandler(function(payload) {
+    const title = 'Messaging from Cenário Capital'
+    const options = {
+        body: payload.data.status
+    }
+    return self.ServiceWorkerRegistration.showNotification(title, options);
 })
-.then (function(token) {
-    console.log(token)
-})
-.catch(function(err) {
-    console.log('Error on permission')
-})
-
-messaging.onMessage(function(payload) {
-    console.log('onMessage: ', payload)
-});
