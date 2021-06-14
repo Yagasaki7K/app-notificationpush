@@ -1,6 +1,3 @@
-importScripts('https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js')
-importScripts('https://www.gstatic.com/firebasejs/8.6.7/firebase-messaging.js')
-
 const ref = new Firebase("sw-creditcards.firebaseapp.com")
 
 const config = {
