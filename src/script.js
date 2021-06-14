@@ -10,7 +10,7 @@ const config = {
     measurementId: "G-W50CWYMNT2"
   };
 
-firebaseConfig.initializeApp(config)
+ref.initializeApp(config)
 
 const rootRef = firebase.database().ref();
 
