@@ -9,7 +9,7 @@ const config = {
     messagingSenderId: "1073108829169",
     appId: "1:1073108829169:web:eb1569a62c16f533dfba50",
     measurementId: "G-W50CWYMNT2"
-};
+  };
 
 firebaseConfig.initializeApp(config)
 
@@ -20,5 +20,5 @@ messaging.setBackgroundMessageHandler(function(payload) {
     const options = {
         body: payload.data.status
     }
-    return self.ServiceWorkerRegistration.showNotification(title, options);
+    return self.ServiceWorkerRegistration.showNotification(title, options)
 })
