@@ -1,6 +1,8 @@
 importScripts('https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/8.6.7/firebase-messaging.js')
 
+const ref = new Firebase("sw-creditcards.firebaseapp.com")
+
 const config = {
     apiKey: "AIzaSyC8VzkQUdmmxsFEoQPQaE-dbys4MA9Oa1Y",
     authDomain: "sw-creditcards.firebaseapp.com",
@@ -12,6 +14,8 @@ const config = {
   };
 
 firebaseConfig.initializeApp(config)
+
+const rootRef = firebase.database().ref();
 
 const messaging = firebase.messaging();
 
