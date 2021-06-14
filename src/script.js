@@ -1,3 +1,5 @@
+importScripts("https://www.gstatic.com/firebasejs/8.6.7/firebase-messaging.js")
+
 const messaging = firebase.messaging();
     messaging.onTokenRefresh(function () {
       messaging.getToken()
