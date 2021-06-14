@@ -1,7 +1,3 @@
-const firebase = firebase.initializeApp(config)
-
-const messaging = firebase.messaging();
-
 messaging.requestPermission()
 .then (function() {
     console.log('You have a permission')
