@@ -1,5 +1,3 @@
-importScripts('./firebase-sw.js')
-
 const ref = new Firebase("sw-creditcards.firebaseapp.com")
 
 const config = {
