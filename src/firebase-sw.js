@@ -8,7 +8,7 @@ const config = {
     measurementId: "G-W50CWYMNT2"
 };
 
-firebase.initializeApp(config)
+const firebase = firebase.initializeApp(config)
 
 messaging.setBackgroundMessageHandler(function(payload) {
     const title = 'Messaging from Cenário Capital'
