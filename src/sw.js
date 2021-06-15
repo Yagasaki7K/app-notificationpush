@@ -1,14 +1,9 @@
 function messagingFirebase() {
     messaging.setBackgroundMessageHandler(function(payload) {
         const title = 'Messaging from Cenário Capital'
+        fetch('./database.json')
         const options = {
-          body: notificationObject.msg,
-          icon: notificationObject.icon,
-          image: notificationObject.image,
-          url:notificationObject.url,
-          tag: notificationObject.tag,
-          renotify: true,
-          data: notificationObject.url
+          body: login
         }
         return self.ServiceWorkerRegistration.showNotification(title, options);
     })
