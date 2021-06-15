@@ -1,20 +1,3 @@
-function messagingFirebase() {
-    messaging.setBackgroundMessageHandler(function(payload) {
-        const title = 'Messaging from Cenário Capital'
-        fetch('./database.json')
-        const options = {
-          body: notificationObject.msg,
-          icon: notificationObject.icon,
-          image: notificationObject.image,
-          url:notificationObject.url,
-          tag: notificationObject.tag,
-          renotify: true,
-          data: notificationObject.url
-        }
-        return self.ServiceWorkerRegistration.showNotification(title, options);
-    })
-}
-
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
@@ -51,7 +34,7 @@ self.addEventListener('fetch', function(event) {
         });
         return response;
       }).catch(function () {
-        return caches.match('/sw-test/gallery/myLittleVader.jpg');
+        return caches.match('/sw-test/');
       });
     }
   }));
