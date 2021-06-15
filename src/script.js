@@ -1,5 +1,3 @@
-import { firebase } from './firebase-sw'
-
 const messaging = firebase.messaging();
     messaging.onTokenRefresh(function () {
       messaging.getToken()

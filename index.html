@@ -7,12 +7,29 @@
     <title>Notification Push Testing</title>
 </head>
 <body>
-           
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+
 </body>
+    <script>
+        // TODO: Replace the following with your app's Firebase project configuration
+        // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+
+        // Initialize Firebase
+        firebase.initializeApp(config);
+    </script>
+
     <script src="src/script.js"></script>
     <script type="module" src="src/firebase-sw.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-messaging.js"></script>
     <script>
         function random_bg_color() {
             var x = Math.floor(Math.random() * 256);
@@ -20,7 +37,7 @@
             var z = Math.floor(Math.random() * 256);
             var bgColor = "rgb(" + x + "," + y + "," + z + ")";
             console.log(bgColor);
-        
+        0o000
             document.body.style.background = bgColor;
             }
 
