@@ -67,13 +67,12 @@ function messageFirebase(permissionResult) {
     if (permissionResult) {
     const notification = new Notification('New message from Cenário Capital', {
         body: 'Hello Yagasaki, I still working...',
-        icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png',
-        
+        icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png', 
     })
 
     notification.onclick = () => {
         window.location.href = 'https://google.com.br'
-    }
+        }
     }
 }
 }

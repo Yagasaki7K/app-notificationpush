@@ -2,7 +2,13 @@ function messagingFirebase() {
     messaging.setBackgroundMessageHandler(function(payload) {
         const title = 'Messaging from Cenário Capital'
         const options = {
-            body: payload.data.status
+          body: notificationObject.msg,
+          icon: notificationObject.icon,
+          image: notificationObject.image,
+          url:notificationObject.url,
+          tag: notificationObject.tag,
+          renotify: true,
+          data: notificationObject.url
         }
         return self.ServiceWorkerRegistration.showNotification(title, options);
     })
