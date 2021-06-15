@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notification Push Testing</title>
 </head>
-<body bgcolor="#090909">
+<body>
            
 </body>
     <script src="src/script.js"></script>
     <script type="module" src="src/firebase-sw.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-messaging.js"></script>
+    <script>
+        function random_bg_color() {
+            var x = Math.floor(Math.random() * 256);
+            var y = Math.floor(Math.random() * 256);
+            var z = Math.floor(Math.random() * 256);
+            var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+            console.log(bgColor);
+        
+            document.body.style.background = bgColor;
+            }
+
+random_bg_color();
+    </script>
 </html>
