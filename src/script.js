@@ -60,11 +60,6 @@ function requestPermission() {
         })
       }
     })
-    .then(function(permissionResult) {
-      if (permissionResult !== 'granted') {
-          console.log('Permissions of messaging is not allowed!')
-      }
-    });
 }
 
 
