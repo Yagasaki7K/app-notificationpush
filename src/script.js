@@ -1,3 +1,4 @@
+function notificationPush() {
 Notification.requestPermission();
 
 if (!('serviceWorker' in navigator)) {
@@ -79,4 +80,5 @@ function messageFirebase() {
         window.location.href = 'https://google.com.br'
     }
     }
+}
 }
