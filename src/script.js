@@ -1,3 +1,15 @@
+if (!('serviceWorker' in navigator)) {
+    console.log("Service Worker isn't supported on this browser, disable or hide UI.");
+    return;
+}
+
+  if (!('PushManager' in window)) {
+    console.log("Push isn't supported on this browser, disable or hide UI.");
+    return;
+}
+
+requestPermission();
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/notification-push/src/sw.js').then(function (registration) {
@@ -10,15 +22,6 @@ if ('serviceWorker' in navigator) {
                     .then(function (refreshedToken) {
                         console.log('Token refreshed.');
                         console.log(refreshedToken);
-                        // // Indicate that the new Instance ID token has not yet been sent to the
-                        // // app server.
-                        // setTokenSentToServer(false);
-                        // // Send Instance ID token to app server.
-                        // sendTokenToServer(refreshedToken);
-                        // // [START_EXCLUDE]
-                        // // Display new Instance ID token and clear UI of all previous messages.
-                        // resetUI();
-                        // // [END_EXCLUDE]
                         messagingFirebase();
                     })
                     .catch(function (err) {
@@ -37,5 +40,42 @@ if ('serviceWorker' in navigator) {
             // registration failed :(
             console.log('ServiceWorker registration failed: ', err);
         });
+    });
+}
+
+function requestPermission() {
+    return new Promise(function(resolve, reject) {
+      const permissionResult = Notification.requestPermission(function(result) {
+        console.log('Handling deprecated version with callback.');
+        resolve(result);
+      });
+
+      function messageFirebase() {
+        if (permissionResult) {
+        const notification = new Notification('New message from Cenário Capital', {
+            body: 'Hello Yagasaki, I still working...',
+            icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png',
+            
+        })
+
+        notification.onclick = () => {
+            window.location.href = 'https://google.com.br'
+        }
+        }
+    }
+
+        if (Notification.permission === 'granted') {
+        } else if (Notification !== 'denied') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+            showNotification();
+            }
+        })
+      }
+    })
+    .then(function(permissionResult) {
+      if (permissionResult !== 'granted') {
+          console.log('Permissions of messaging is not allowed!')
+      }
     });
 }
