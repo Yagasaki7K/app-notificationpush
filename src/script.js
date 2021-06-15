@@ -22,7 +22,7 @@ if ('serviceWorker' in navigator) {
                     .then(function (refreshedToken) {
                         console.log('Token refreshed.');
                         console.log(refreshedToken);
-                        messagingFirebase();
+                        requestPermission();
                     })
                     .catch(function (err) {
                         console.log('Unable to retrieve refreshed token ', err);
@@ -50,25 +50,11 @@ function requestPermission() {
         resolve(result);
       });
 
-      function messageFirebase() {
-        if (permissionResult) {
-        const notification = new Notification('New message from Cenário Capital', {
-            body: 'Hello Yagasaki, I still working...',
-            icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png',
-            
-        })
-
-        notification.onclick = () => {
-            window.location.href = 'https://google.com.br'
-        }
-        }
-    }
-
         if (Notification.permission === 'granted') {
         } else if (Notification !== 'denied') {
         Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
-            showNotification();
+            messageFirebase();
             }
         })
       }
@@ -78,4 +64,19 @@ function requestPermission() {
           console.log('Permissions of messaging is not allowed!')
       }
     });
+}
+
+
+function messageFirebase() {
+    if (permissionResult) {
+    const notification = new Notification('New message from Cenário Capital', {
+        body: 'Hello Yagasaki, I still working...',
+        icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png',
+        
+    })
+
+    notification.onclick = () => {
+        window.location.href = 'https://google.com.br'
+    }
+    }
 }
