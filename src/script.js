@@ -55,7 +55,7 @@ function requestPermission() {
         } else if (Notification !== 'denied') {
         Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
-            messageFirebase();
+            messageFirebase(permissionResult);
             }
         })
       }
@@ -63,7 +63,7 @@ function requestPermission() {
 }
 
 
-function messageFirebase() {
+function messageFirebase(permissionResult) {
     if (permissionResult) {
     const notification = new Notification('New message from Cenário Capital', {
         body: 'Hello Yagasaki, I still working...',
