@@ -1,37 +1,23 @@
-const ref = new Firebase("sw-creditcards.firebaseapp.com")
-
-const config = {
-    apiKey: "AIzaSyC8VzkQUdmmxsFEoQPQaE-dbys4MA9Oa1Y",
-    authDomain: "sw-creditcards.firebaseapp.com",
-    projectId: "sw-creditcards",
-    storageBucket: "sw-creditcards.appspot.com",
-    messagingSenderId: "1073108829169",
-    appId: "1:1073108829169:web:eb1569a62c16f533dfba50",
-    measurementId: "G-W50CWYMNT2"
-  };
-
-ref.initializeApp(config)
-
-const rootRef = firebase.database().ref();
+import { firebase } from './firebase-sw'
 
 const messaging = firebase.messaging();
-
-messaging.requestPermission();
-
-messaging.requestPermission()
-.then(function() {
-  console.log('You have a permission')
-  return messaging.getToken();
-})
-
-.then(function() {
-  console.log(token)
-})
-
-.catch(function(err) {
-  console.log('Error on permission')
-})
-
-messaging.onMessage(function(payload) {
-  console.log('onMessage: ', payload)
-})
+    messaging.onTokenRefresh(function () {
+      messaging.getToken()
+        .then(function (refreshedToken) {
+          console.log('Token refreshed.');
+          console.log(refreshedToken);
+          // // Indicate that the new Instance ID token has not yet been sent to the
+          // // app server.
+          // setTokenSentToServer(false);
+          // // Send Instance ID token to app server.
+          // sendTokenToServer(refreshedToken);
+          // // [START_EXCLUDE]
+          // // Display new Instance ID token and clear UI of all previous messages.
+          // resetUI();
+          // // [END_EXCLUDE]
+        })
+        .catch(function (err) {
+          console.log('Unable to retrieve refreshed token ', err);
+          // showToken('Unable to retrieve refreshed token ', err);
+        });
+    });
