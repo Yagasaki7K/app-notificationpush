@@ -1,8 +1,6 @@
 
 	'use strict';
 
-  
-
     self.addEventListener('push', function (event) {
 		
         const notificationObject = JSON.parse(event.data.text());
@@ -15,9 +13,6 @@
 			tag: notificationObject.tag,
 			renotify: true,
           	data: notificationObject.url
-
-
-
         };
      	event.data.url = notificationObject.url;
         self.id_envio = notificationObject.id_envio;
