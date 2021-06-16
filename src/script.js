@@ -1,16 +1,8 @@
 function notificationPush() {
 Notification.requestPermission();
 
-if (!('serviceWorker' in navigator)) {
+if ('serviceWorker' in navigator) {
     console.log("Service Worker isn't supported on this browser, disable or hide UI.");
-}
-
-  if (!('PushManager' in window)) {
-    console.log("Push isn't supported on this browser, disable or hide UI.");
-}
-
-requestPermission();
-if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("./sw.js")
       .then(function (registration) {
@@ -24,17 +16,13 @@ if ("serviceWorker" in navigator) {
         // registration failed :(
         console.log("ServiceWorker registration failed: ", err);
       });
-  }
-  window.addEventListener("beforeinstallprompt", function (e) {
-    e.userChoice.then(function (choiceResult) {
-      console.log(choiceResult.outcome);
-      if (choiceResult.outcome == "dismissed") {
-        console.log("User cancelled home screen install");
-      } else {
-        console.log("User added to home screen");
-      }
-    });
-  });
+}
+
+  if ('PushManager' in window) {
+    console.log("Push isn't supported on this browser, disable or hide UI.");
+}
+
+requestPermission();
 
 function requestPermission() {
     return new Promise(function(resolve, reject) {
