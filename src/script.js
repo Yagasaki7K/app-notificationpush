@@ -4,7 +4,7 @@ Notification.requestPermission();
 if ('serviceWorker' in navigator) {
     console.log("Service Worker isn't supported on this browser, disable or hide UI.");
     navigator.serviceWorker
-      .register("./sw.js")
+      .register("./notification-push/src/sw.js")
       .then(function (registration) {
         // Registration was successful
         console.log(
