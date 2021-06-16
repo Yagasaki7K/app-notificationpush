@@ -10,39 +10,31 @@ if (!('serviceWorker' in navigator)) {
 }
 
 requestPermission();
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/notification-push/src/sw.js').then(function (registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-
-            const messaging = firebase.messaging();
-            messaging.onTokenRefresh(function () {
-                messaging.getToken()
-                    .then(function (refreshedToken) {
-                        console.log('Token refreshed.');
-                        console.log(refreshedToken);
-                        requestPermission();
-                    })
-                    .catch(function (err) {
-                        console.log('Unable to retrieve refreshed token ', err);
-                        // showToken('Unable to retrieve refreshed token ', err);
-                    });
-            });
-
-            messaging.onMessage(function (payload) {
-                console.log("Message received. ", payload);
-                // ...
-            });
-
-
-        }, function (err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-        });
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then(function (registration) {
+        // Registration was successful
+        console.log(
+          "ServiceWorker registration successful with scope: ",
+          registration.scope
+        );
+      })
+      .catch(function (err) {
+        // registration failed :(
+        console.log("ServiceWorker registration failed: ", err);
+      });
+  }
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.userChoice.then(function (choiceResult) {
+      console.log(choiceResult.outcome);
+      if (choiceResult.outcome == "dismissed") {
+        console.log("User cancelled home screen install");
+      } else {
+        console.log("User added to home screen");
+      }
     });
-}
+  });
 
 function requestPermission() {
     return new Promise(function(resolve, reject) {
