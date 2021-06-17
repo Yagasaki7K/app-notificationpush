@@ -1,10 +1,5 @@
 function notificationPush() {
 
-import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-
-const el = document.createElement('pwa-update');
-document.body.appendChild(el);
-
 Notification.requestPermission();
 
 if ('serviceWorker' in navigator) {
