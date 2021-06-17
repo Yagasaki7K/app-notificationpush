@@ -1,4 +1,4 @@
-window.onload = function notificationPush() {
+function notificationPush() {
 
 Notification.requestPermission();
 
@@ -19,11 +19,11 @@ if ('serviceWorker' in navigator) {
       });
 }
   
-  requestPermission();
+    requestPermission();
 
-  if ('PushManager' in window) {
-    console.log("Push isn't supported on this browser, disable or hide UI.");
-}
+    if ('PushManager' in window) {
+        console.log("Push isn't supported on this browser, disable or hide UI.");
+    }
  
 function requestPermission() {
     return new Promise(function(resolve, reject) {
