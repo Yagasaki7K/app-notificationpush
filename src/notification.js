@@ -9,6 +9,4 @@ function messageFirebase(permissionResult) {
         window.location.href = 'https://google.com.br'
         }
     }
-
-    return notification;
-  }
+}
