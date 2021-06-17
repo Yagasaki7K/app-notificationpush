@@ -24,36 +24,36 @@ if ('serviceWorker' in navigator) {
   if ('PushManager' in window) {
     console.log("Push isn't supported on this browser, disable or hide UI.");
 }
-}
-
+ 
 function requestPermission() {
-  return new Promise(function(resolve, reject) {
-    const permissionResult = Notification.requestPermission(function(result) {
-      console.log('Handling deprecated version with callback.');
-      resolve(result);
-    });
-
-      if (Notification.permission === 'granted') {
-      } else if (Notification !== 'denied') {
-      Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-          messageFirebase(permissionResult);
-          }
-      })
-    }
-  })
-}  
-
-
-function messageFirebase(permissionResult) {
-  if (permissionResult) {
-  const notification = new Notification('New message from Cenário Capital', {
-      body: 'Hello. Now you gonna receive our notification',
-      icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png', 
-  })
-
-  notification.onclick = () => {
-      window.location.href = 'https://google.com.br'
+    return new Promise(function(resolve, reject) {
+      const permissionResult = Notification.requestPermission(function(result) {
+        console.log('Handling deprecated version with callback.');
+        resolve(result);
+      });
+  
+        if (Notification.permission === 'granted') {
+        } else if (Notification !== 'denied') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+            messageFirebase(permissionResult);
+            }
+        })
       }
+    })
+  }  
+  
+  
+  function messageFirebase(permissionResult) {
+    if (permissionResult) {
+    const notification = new Notification('New message from Cenário Capital', {
+        body: 'Hello. Now you gonna receive our notification',
+        icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png', 
+    })
+  
+    notification.onclick = () => {
+        window.location.href = 'https://google.com.br'
+        }
+    }
   }
 }
