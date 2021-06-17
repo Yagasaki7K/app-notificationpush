@@ -3,7 +3,6 @@ function notificationPush() {
 Notification.requestPermission();
 
 if ('serviceWorker' in navigator) {
-    console.log("Service Worker isn't supported on this browser, disable or hide UI.");
     navigator.serviceWorker
       .register("https://yagasaki7k.github.io/notification-push/src/sw.js")
       .then(function (registration) {
@@ -18,12 +17,8 @@ if ('serviceWorker' in navigator) {
         console.log("ServiceWorker registration failed: ", err);
       });
 }
-  
-    requestPermission();
 
-    if ('PushManager' in window) {
-        console.log("Push isn't supported on this browser, disable or hide UI.");
-    }
+requestPermission();
  
 function requestPermission() {
     return new Promise(function(resolve, reject) {
@@ -43,7 +38,7 @@ function requestPermission() {
     })
   }  
    
-  function messageFirebase(permissionResult) {
+function messageFirebase(permissionResult) {
     if (permissionResult) {
     const notification = new Notification('New message from Notification Push', {
         body: 'Hello. Now you gonna receive our notification',
