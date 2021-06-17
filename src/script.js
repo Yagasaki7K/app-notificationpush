@@ -18,42 +18,42 @@ if ('serviceWorker' in navigator) {
         console.log("ServiceWorker registration failed: ", err);
       });
 }
+  
+  requestPermission();
 
   if ('PushManager' in window) {
     console.log("Push isn't supported on this browser, disable or hide UI.");
 }
-
-requestPermission();
+}
 
 function requestPermission() {
-    return new Promise(function(resolve, reject) {
-      const permissionResult = Notification.requestPermission(function(result) {
-        console.log('Handling deprecated version with callback.');
-        resolve(result);
-      });
+  return new Promise(function(resolve, reject) {
+    const permissionResult = Notification.requestPermission(function(result) {
+      console.log('Handling deprecated version with callback.');
+      resolve(result);
+    });
 
-        if (Notification.permission === 'granted') {
-        } else if (Notification !== 'denied') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-            messageFirebase(permissionResult);
-            }
-        })
-      }
-    })
+      if (Notification.permission === 'granted') {
+      } else if (Notification !== 'denied') {
+      Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+          messageFirebase(permissionResult);
+          }
+      })
+    }
+  })
 }
 
 
 function messageFirebase(permissionResult) {
-    if (permissionResult) {
-    const notification = new Notification('New message from Cenário Capital', {
-        body: 'Hello Yagasaki, I still working...',
-        icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png', 
-    })
+  if (permissionResult) {
+  const notification = new Notification('New message from Cenário Capital', {
+      body: 'Hello Yagasaki, I still working...',
+      icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png', 
+  })
 
-    notification.onclick = () => {
-        window.location.href = 'https://google.com.br'
-        }
-    }
-}
+  notification.onclick = () => {
+      window.location.href = 'https://google.com.br'
+      }
+  }
 }
