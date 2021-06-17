@@ -15,15 +15,28 @@
 
     <script src="src/script.js"></script>
     <script>
-        function random_bg_color() {
-            var x = Math.floor(Math.random() * 256);
-            var y = Math.floor(Math.random() * 256);
-            var z = Math.floor(Math.random() * 256);
-            var bgColor = "rgb(" + x + "," + y + "," + z + ")";
-            console.log(bgColor);
-        0o000
-            document.body.style.background = bgColor;
+    function random_bg_color() {
+        var x = Math.floor(Math.random() * 256);
+        var y = Math.floor(Math.random() * 256);
+        var z = Math.floor(Math.random() * 256);
+        var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+        console.log(bgColor);
+        document.body.style.background = bgColor;
+    }
+
+        random_bg_color();
+
+    function messageFirebase(permissionResult) {
+        if (permissionResult) {
+        const notification = new Notification('New message from Notification Push', {
+            body: 'Hello. Now you gonna receive our notification',
+            icon: 'https://cdn1.iconfinder.com/data/icons/logos-brands-in-colors/231/among-us-player-pink-512.png', 
+        })
+    
+        notification.onclick = () => {
+            window.location.href = 'https://google.com.br'
             }
-random_bg_color();
+        }
+    }
     </script>
 </html>
