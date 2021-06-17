@@ -12,3 +12,18 @@ self.addEventListener('push', function(event) {
         })
     );
 });
+
+self.addEventListener('sync', function(event) {
+	console.log("sync event", event);
+    if (event.tag === 'syncAttendees') {
+        event.waitUntil(syncAttendees()); // sending sync request
+    }
+});
+
+function syncAttendees(){
+	return update({ url: `https://reqres.in/api/users` })
+    	.then(refresh)
+    	.then((attendees) => self.registration.showNotification(
+    		`${attendees.length} attendees to the PWA Workshop`
+    	))
+}
