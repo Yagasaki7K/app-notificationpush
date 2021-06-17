@@ -1,20 +1,42 @@
-function registerNotification() {
-	Notification.requestPermission(permission => {
-		if (permission === 'granted'){ registerBackgroundSync() }
-		else console.error("Permission was not granted.")
-	})
+function notificationPush() {
+
+Notification.requestPermission();
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register("https://yagasaki7k.github.io/notification-push/src/sw.js")
+      .then(function (registration) {
+        // Registration was successful
+        console.log(
+          "ServiceWorker registration successful with scope: ",
+          registration.scope
+        );
+      })
+      .catch(function (err) {
+        // registration failed :(
+        console.log("ServiceWorker registration failed: ", err);
+      });
 }
 
-function registerBackgroundSync() {
-  if (!navigator.serviceWorker){
-      return console.error("Service Worker not supported")
-  }
-
-  navigator.serviceWorker.ready
-  .then(registration => registration.sync.register('syncAttendees'))
-  .then(() => console.log("Registered background sync"))
-  .catch(err => console.error("Error registering background sync", err))
-}
+requestPermission();
+ 
+function requestPermission() {
+    return new Promise(function(resolve, reject) {
+      const permissionResult = Notification.requestPermission(function(result) {
+        console.log('Handling deprecated version with callback.');
+        resolve(result);
+      });
+  
+        if (Notification.permission === 'granted') {
+        } else if (Notification !== 'denied') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              messageFirebase(permissionResult);
+            }
+        })
+      }
+    })
+  }  
    
 function messageFirebase(permissionResult) {
     if (permissionResult) {
@@ -28,3 +50,4 @@ function messageFirebase(permissionResult) {
         }
     }
   }
+}
